@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.FineController">
+    <VBox spacing="15" alignment="CENTER" layoutX="30" layoutY="30">
+        <Label text="Fine Details" style="-fx-font-size: 18px;" />
+        <TableView fx:id="fineTable" prefWidth="600" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="colTitle" text="Book Title" />
+                <TableColumn fx:id="colDueDate" text="Due Date" />
+                <TableColumn fx:id="colReturnDate" text="Returned On" />
+                <TableColumn fx:id="colFine" text="Fine (₹)" />
+            </columns>
+        </TableView>
+        <Button text="Close" onAction="#handleClose" />
+    </VBox>
+</AnchorPane>

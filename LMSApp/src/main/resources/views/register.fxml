@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.RegisterController">
+    <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="30">
+        <Label text="Student Registration" style="-fx-font-size: 20px;" />
+
+        <TextField fx:id="nameField" promptText="Full Name" />
+        <TextField fx:id="emailField" promptText="Email" />
+        <PasswordField fx:id="passField" promptText="Password" />
+        <PasswordField fx:id="confirmPassField" promptText="Confirm Password" />
+
+        <Button text="Register" onAction="#handleRegister" />
+        <Button text="Back to Login" onAction="#handleBack" />
+    </VBox>
+</AnchorPane>

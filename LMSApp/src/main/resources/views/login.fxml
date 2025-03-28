@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.LoginController" prefWidth="400" prefHeight="300">
+    <children>
+        <VBox layoutX="100" layoutY="50" spacing="15" alignment="CENTER">
+            <Label text="LMS Login" style="-fx-font-size: 18px;"/>
+            <TextField fx:id="emailField" promptText="Email"/>
+            <PasswordField fx:id="passField" promptText="Password"/>
+            <Button text="Login" onAction="#handleLogin"/>
+            <Button text="Register as Student" onAction="#handleRegisterRedirect" />
+        </VBox>
+    </children>
+</AnchorPane>
