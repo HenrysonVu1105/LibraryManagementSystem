@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🏛️ University Library System</h1>
+
+        <!-- Book List -->
+        <div class="section">
+            <h2>📚 Book Catalog</h2>
+            <div class="table-container">
+                <table id="books-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <button onclick="loadBooks()">🔄 Refresh List</button>
+        </div>
+
+        <!-- Borrow Form -->
+        <div class="section">
+            <h2>🔖 Borrow a Book</h2>
+            <form id="borrow-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="book-id">Book ID:</label>
+                    <input type="number" id="book-id" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-id">Student ID:</label>
+                    <input type="number" id="student-id" required>
+                </div>
+                <div class="form-group">
+                    <label for="date-borrowed">Borrow Date:</label>
+                    <input type="date" id="date-borrowed" required>
+                </div>
+                <div class="form-group">
+                    <label for="date-return">Return Date:</label>
+                    <input type="date" id="date-return" required>
+                </div>
+                <button type="submit" onclick="borrowBook()">📥 Borrow Book</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Load books on page load
+        document.addEventListener('DOMContentLoaded', loadBooks);
+
+        async function loadBooks() {
+            try {
+                const response = await fetch('/api/books');
+                if (!response.ok) throw new Error('Failed to fetch books');
+
+                const books = await response.json();
+                const tbody = document.querySelector('#books-table tbody');
+                tbody.innerHTML = '';
+
+                books.forEach(book => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${book.book_id}</td>
+                        <td>${book.title}</td>
+                        <td>${book.author}</td>
+                        <td class="status ${book.status.toLowerCase()}">${book.status}</td>
+                        <td>
+                            <button class="btn-check" 
+                                    onclick="checkAvailability(${book.book_id})">
+                                🔍 Check
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        async function checkAvailability(bookId) {
+            try {
+                const response = await fetch(`/api/books/${bookId}/availability`);
+                if (!response.ok) throw new Error('Check failed');
+
+                const result = await response.json();
+                alert(`Book ${bookId} is ${result.available}`);
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        async function borrowBook() {
+            const formData = {
+                book_id: document.getElementById('book-id').value,
+                student_id: document.getElementById('student-id').value,
+                date_borrowed: document.getElementById('date-borrowed').value,
+                date_return: document.getElementById('date-return').value
+            };
+
+            try {
+                const response = await fetch('/api/borrow', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('✅ ' + result.message);
+                    loadBooks();
+                    document.getElementById('borrow-form').reset();
+                } else {
+                    throw new Error(result.error || 'Borrowing failed');
+                }
+            } catch (error) {
+                alert('❌ Error: ' + error.message);
+            }
+        }
+    </script>
+</body>
+
+</html>
