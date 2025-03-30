@@ -1,30 +1,30 @@
--- main script... imports all scripts from other files 
+-- this main script imports all scripts from other files 
 
 -- drop 
 @sql/schema/drop_tables.sql
 
--- create tables 
+-- create 
 @sql/schema/create_tables.sql
 
--- add additional sample data
+-- inserting additional data 
 @sql/schema/insert_data.sql
 
 -- create sequences
 @sql/sequences/sequences.sql
 
--- create indexes
+-- indexes
 @sql/indexes/indexes.sql
 
--- create triggers
+-- triggers
 @sql/triggers/triggers.sql
 
--- create procedures
+-- procedures
 @sql/procedures/procedures.sql
 
--- create functions
+-- functions
 @sql/functions/functions.sql
 
--- create packages
+-- packages
 @sql/packages/packages.sql
 
 commit;
