@@ -1,4 +1,3 @@
--- Database of the library management system
 DROP TABLE STUDENT CASCADE CONSTRAINTS;
 DROP TABLE Librarian CASCADE CONSTRAINTS;
 DROP TABLE BOOK CASCADE CONSTRAINTS;
@@ -48,6 +47,7 @@ CREATE TABLE BOOK
     Status_ID NUMBER,
     FOREIGN KEY (Status_ID) REFERENCES BOOK_STATUS(Status_ID)
 );
+
 CREATE TABLE BORROWING
 (
     Borrowing_ID NUMBER PRIMARY KEY,
@@ -58,6 +58,7 @@ CREATE TABLE BORROWING
     FOREIGN KEY (Book_ID) REFERENCES BOOK(Book_ID),
     FOREIGN KEY (Student_ID) REFERENCES STUDENT(Student_ID)
 );
+
 CREATE TABLE FINE
 (
     Fine_ID NUMBER PRIMARY KEY,
@@ -66,6 +67,7 @@ CREATE TABLE FINE
     Paid_Status VARCHAR2(10),
     FOREIGN KEY (borrowing_ID) REFERENCES Borrowing(borrowing_ID)
 );
+
 CREATE TABLE TRANSACTIONS
 (
     Trans_ID NUMBER PRIMARY KEY,
@@ -90,24 +92,21 @@ CREATE TABLE REPORTS
     FOREIGN KEY (borrowing_ID) REFERENCES Borrowing(borrowing_ID)
 );
 
---sample data
--- Insert sample data into STUDENT
+-- Initial sample data
 INSERT INTO STUDENT (Student_ID, fName, lName, Gender, Age, Contact_ID, Student_Email, Student_Pass, Address, Contact)
 VALUES (1, 'John', 'Doe', 'Male', 21, 101, 'johndoe@example.com', 'pass123', '123 Main St, Toronto', '123-456-7890');
+
 INSERT INTO STUDENT (Student_ID, fName, lName, Gender, Age, Contact_ID, Student_Email, Student_Pass, Address, Contact)
 VALUES(2, 'Jane', 'Smith', 'Female', 22, 102, 'janesmith@example.com', 'pass456', '456 Oak St, Toronto', '987-654-3210');
 
--- Insert sample data into LIBRARIAN
 INSERT INTO LIBRARIAN (Librarian_ID, fName, lName, Email, Password)
-VALUES
-    (1, 'Alice', 'Brown', 'alice@example.com', 'lib123');
+VALUES (1, 'Alice', 'Brown', 'alice@example.com', 'lib123');
+
 INSERT INTO LIBRARIAN (Librarian_ID, fName, lName, Email, Password)
 VALUES(2, 'Bob', 'Wilson', 'bob@example.com', 'lib456');
 
--- Insert sample data into BOOK_STATUS
 INSERT INTO BOOK_STATUS (Status_ID, Status_Name)
-VALUES
-    (1, 'Available');
+VALUES (1, 'Available');
 
 INSERT INTO BOOK_STATUS (Status_ID, Status_Name)
 VALUES(2, 'Borrowed');
@@ -115,39 +114,34 @@ VALUES(2, 'Borrowed');
 INSERT INTO BOOK_STATUS (Status_ID, Status_Name)
 VALUES(3, 'Reserved');
 
--- Insert sample data into BOOK
 INSERT INTO BOOK (Book_ID, Book_Title, Book_Name, Publisher, Author, Quantity, Pub_Date, Status_ID)
-VALUES
-    (1, 'Introduction to Java', 'Java Basics', 'Pearson', 'James Gosling', 10, TO_DATE('2021-05-10', 'YYYY-MM-DD'), 1);
+VALUES (1, 'Introduction to Java', 'Java Basics', 'Pearson', 'James Gosling', 10, TO_DATE('2021-05-10', 'YYYY-MM-DD'), 1);
+
 INSERT INTO BOOK (Book_ID, Book_Title, Book_Name, Publisher, Author, Quantity, Pub_Date, Status_ID)
 VALUES(2, 'Database Systems', 'SQL Guide', 'O’Reilly', 'Elmasri Navathe', 5, TO_DATE('2020-11-15', 'YYYY-MM-DD'), 2);
 
--- Insert sample data into BORROWING
 INSERT INTO BORROWING (Borrowing_ID, Book_ID, Student_ID, Date_borrowed, Date_return)
-VALUES
-    (1, 1, 1, TO_DATE('2025-03-01', 'YYYY-MM-DD'), TO_DATE('2025-03-15', 'YYYY-MM-DD'));
+VALUES (1, 1, 1, TO_DATE('2025-03-01', 'YYYY-MM-DD'), TO_DATE('2025-03-15', 'YYYY-MM-DD'));
+
 INSERT INTO BORROWING (Borrowing_ID, Book_ID, Student_ID, Date_borrowed, Date_return)
 VALUES(2, 2, 2, TO_DATE('2025-03-05', 'YYYY-MM-DD'), TO_DATE('2025-03-20', 'YYYY-MM-DD'));
 
--- Insert sample data into FINE
 INSERT INTO FINE (Fine_ID, Borrowing_ID, Amount, Paid_Status)
-VALUES
-    (1, 1, 10.00, 'Unpaid');
+VALUES (1, 1, 10.00, 'Unpaid');
+
 INSERT INTO FINE (Fine_ID, Borrowing_ID, Amount, Paid_Status)
 VALUES(2, 2, 5.00, 'Paid');
 
--- Insert sample data into TRANSACTIONS
 INSERT INTO TRANSACTIONS (Trans_ID, Trans_Name, Trans_Date, Borrowing_ID, Student_ID, Librarian_ID)
-VALUES
-    (1, 'Borrowed Book', TO_DATE('2025-03-01', 'YYYY-MM-DD'), 1, 1, 1);
+VALUES (1, 'Borrowed Book', TO_DATE('2025-03-01', 'YYYY-MM-DD'), 1, 1, 1);
+
 INSERT INTO TRANSACTIONS (Trans_ID, Trans_Name, Trans_Date, Borrowing_ID, Student_ID, Librarian_ID)
 VALUES(2, 'Returned Book', TO_DATE('2025-03-15', 'YYYY-MM-DD'), 1, 1, 2);
 
--- Insert sample data into REPORTS
 INSERT INTO REPORTS (Reports_ID, Reports_Desc, Reports_Date, Trans_ID, Borrowing_ID)
-VALUES
-    (1, 'Student borrowed Java book', TO_DATE('2025-03-01', 'YYYY-MM-DD'), 1, 1);
+VALUES (1, 'Student borrowed Java book', TO_DATE('2025-03-01', 'YYYY-MM-DD'), 1, 1);
+
 INSERT INTO REPORTS (Reports_ID, Reports_Desc, Reports_Date, Trans_ID, Borrowing_ID)
-VALUES(2, 'Student returned SQL Guide', TO_DATE('2025-03-15', 'YYYY-MM-DD'), 2, 2);
+VALUES (2, 'Student returned SQL Guide', TO_DATE('2025-03-15', 'YYYY-MM-DD'), 2, 2);
 
 COMMIT;
