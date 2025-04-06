@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Borrowing Record</title>
+</head>
+<body>
+    <h1>Add Borrowing Record</h1>
+    <form method="POST" action="/add_borrowing">
+        <label for="Book_ID">Book:</label><br>
+        <select name="Book_ID" id="Book_ID">
+            {% for book in books %}
+                <option value="{{ book[0] }}">{{ book[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="Student_ID">Student:</label><br>
+        <select name="Student_ID" id="Student_ID">
+            {% for student in students %}
+                <option value="{{ student[0] }}">{{ student[1] }} {{ student[2] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="Date_borrowed">Date Borrowed:</label><br>
+        <input type="date" id="Date_borrowed" name="Date_borrowed" required><br><br>
+        <label for="Date_return">Date Return:</label><br>
+        <input type="date" id="Date_return" name="Date_return" required><br><br>
+        <input type="submit" value="Add Borrowing Record">
+    </form>
+    <a href="/">Back to Main</a>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Fine</title>
+</head>
+<body>
+    <h1>Update Fine</h1>
+    <form method="POST" action="/update_fine/{{ fine[0] }}">
+        <label for="Borrowing_ID">Borrowing ID:</label><br>
+        <input type="number" id="Borrowing_ID" name="Borrowing_ID" value="{{ fine[1] }}" required><br><br>
+        <label for="Amount">Amount:</label><br>
+        <input type="number" id="Amount" name="Amount" value="{{ fine[2] }}" required><br><br>
+        <label for="Paid_Status">Paid Status:</label><br>
+        <input type="text" id="Paid_Status" name="Paid_Status" value="{{ fine[3] }}" required><br><br>
+        <input type="submit" value="Update Fine">
+    </form>
+    <a href="/">Back to Main</a>
+</body>
+</html>

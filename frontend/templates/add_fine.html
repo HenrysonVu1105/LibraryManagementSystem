@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Fine</title>
+</head>
+<body>
+    <h1>Add Fine</h1>
+    <form method="POST" action="/add_fine">
+        <label for="Borrowing_ID">Borrowing ID:</label><br>
+        <select name="Borrowing_ID" id="Borrowing_ID">
+            {% for borrowing in borrowings %}
+                <option value="{{ borrowing[0] }}">{{ borrowing[0] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="Amount">Amount:</label><br>
+        <input type="number" id="Amount" name="Amount" required><br><br>
+        <label for="Paid_Status">Paid Status:</label><br>
+        <input type="text" id="Paid_Status" name="Paid_Status" required><br><br>
+        <input type="submit" value="Add Fine">
+    </form>
+    <a href="/">Back to Main</a>
+</body>
+</html>

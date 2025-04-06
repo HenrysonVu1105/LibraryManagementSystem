@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Transactions</title>
+</head>
+
+<body>
+    <h1>Transactions</h1>
+    <table border="1">
+        <tr>
+            <th>Transaction ID</th>
+            <th>Transaction Name</th>
+            <th>Transaction Date</th>
+            <th>Borrowing ID</th>
+            <th>Student ID</th>
+            <th>Librarian ID</th>
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction[0] }}</td>
+            <td>{{ transaction[1] }}</td>
+            <td>{{ transaction[2] }}</td>
+            <td>{{ transaction[3] }}</td>
+            <td>{{ transaction[4] }}</td>
+            <td>{{ transaction[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Back to Main</a>
+</body>
+
+</html>

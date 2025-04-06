@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fines</title>
+</head>
+
+<body>
+    <h1>Fines</h1>
+    <table border="1">
+        <tr>
+            <th>Fine ID</th>
+            <th>Borrowing ID</th>
+            <th>Amount</th>
+            <th>Paid Status</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for fine in fines %}
+        <tr>
+            <td>{{ fine[0] }}</td>
+            <td>{{ fine[1] }}</td>
+            <td>{{ fine[2] }}</td>
+            <td>{{ fine[3] }}</td>
+            <td><a href="/update_fine/{{ fine[0] }}">Update</a></td>
+            <td>
+                <form method="POST" action="/delete_fine/{{ fine[0] }}">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Back to Main</a>
+</body>
+
+</html>

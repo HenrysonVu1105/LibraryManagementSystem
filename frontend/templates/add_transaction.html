@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Transaction</title>
+</head>
+
+<body>
+    <h1>Add Transaction</h1>
+    <form method="POST" action="/add_transaction">
+        <label for="Trans_Name">Transaction Name:</label><br>
+        <input type="text" id="Trans_Name" name="Trans_Name" required><br><br>
+        <label for="Trans_Date">Transaction Date:</label><br>
+        <input type="date" id="Trans_Date" name="Trans_Date" required><br><br>
+        <label for="Borrowing_ID">Borrowing ID:</label><br>
+        <select name="Borrowing_ID" id="Borrowing_ID">
+            {% for borrowing in borrowings %}
+            <option value="{{ borrowing[0] }}">{{ borrowing[0] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="Student_ID">Student ID:</label><br>
+        <select name="Student_ID" id="Student_ID">
+            {% for student in students %}
+            <option value="{{ student[0] }}">{{ student[0] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="Librarian_ID">Librarian ID:</label><br>
+        <select name="Librarian_ID" id="Librarian_ID">
+            {% for librarian in librarians %}
+            <option value="{{ librarian[0] }}">{{ librarian[0] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Add Transaction">
+    </form>
+    <a href="/">Back to Main</a>
+</body>
+
+</html>

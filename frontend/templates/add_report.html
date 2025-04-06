@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Report</title>
+</head>
+<body>
+    <h1>Add Report</h1>
+    <form method="POST" action="/add_report">
+        <label for="Reports_Desc">Report Description:</label><br>
+        <input type="text" id="Reports_Desc" name="Reports_Desc" required><br><br>
+        <label for="Reports_Date">Report Date:</label><br>
+        <input type="date" id="Reports_Date" name="Reports_Date" required><br><br>
+        <label for="Trans_ID">Transaction ID:</label><br>
+        <select name="Trans_ID" id="Trans_ID">
+            {% for transaction in transactions %}
+                <option value="{{ transaction[0] }}">{{ transaction[0] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="Borrowing_ID">Borrowing ID:</label><br>
+        <select name="Borrowing_ID" id="Borrowing_ID">
+            {% for borrowing in borrowings %}
+                <option value="{{ borrowing[0] }}">{{ borrowing[0] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Add Report">
+    </form>
+    <a href="/">Back to Main</a>
+</body>
+</html>

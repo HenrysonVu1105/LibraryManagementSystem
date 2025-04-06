@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Librarians</title>
+</head>
+
+<body>
+    <h1>Librarians</h1>
+    <table border="1">
+        <tr>
+            <th>Librarian ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        {% for librarian in librarians %}
+        <tr>
+            <td>{{ librarian[0] }}</td>
+            <td>{{ librarian[1] }}</td>
+            <td>{{ librarian[2] }}</td>
+            <td>{{ librarian[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Back to Main</a>
+</body>
+
+</html>

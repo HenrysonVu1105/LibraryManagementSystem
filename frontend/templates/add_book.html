@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Book</title>
+</head>
+
+<body>
+    <h1>Add Book</h1>
+    <form method="POST" action="/add_book">
+        <label for="Book_Title">Book Title:</label><br>
+        <input type="text" id="Book_Title" name="Book_Title" required><br><br>
+        <label for="Book_Name">Book Name:</label><br>
+        <input type="text" id="Book_Name" name="Book_Name" required><br><br>
+        <label for="Publisher">Publisher:</label><br>
+        <input type="text" id="Publisher" name="Publisher" required><br><br>
+        <label for="Author">Author:</label><br>
+        <input type="text" id="Author" name="Author" required><br><br>
+        <label for="Quantity">Quantity:</label><br>
+        <input type="number" id="Quantity" name="Quantity" required><br><br>
+        <label for="Pub_Date">Publication Date:</label><br>
+        <input type="date" id="Pub_Date" name="Pub_Date" required><br><br>
+        <label for="Status_ID">Status:</label><br>
+        <select name="Status_ID" id="Status_ID">
+            {% for status in statuses %}
+            <option value="{{ status[0] }}">{{ status[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Add Book">
+    </form>
+    <a href="/">Back to Main</a>
+</body>
+
+</html>

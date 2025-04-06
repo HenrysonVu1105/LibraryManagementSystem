@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Borrowing Records</title>
+</head>
+
+<body>
+    <h1>Borrowing Records</h1>
+    <table border="1">
+        <tr>
+            <th>Borrowing ID</th>
+            <th>Book ID</th>
+            <th>Student ID</th>
+            <th>Date Borrowed</th>
+            <th>Date Returned</th>
+        </tr>
+        {% for record in borrowing_records %}
+        <tr>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
+            <td>{{ record[3] }}</td>
+            <td>{{ record[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Back to Main</a>
+</body>
+
+</html>
