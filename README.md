@@ -1,3 +1,4 @@
+```
 library_management_system/
 │
 ├── app.py          # Main Flask application file
@@ -15,6 +16,7 @@ library_management_system/
 │   # ... other template files
 │ 
 └── README.md
+```
 
 before executing app.py at ./frontend/app.py, make sure to install flask, cx_Oracle
 ** important ** 
